@@ -98,7 +98,7 @@ export class Props {
    */
   public pageAnimateTime?: number = 100;
 
-  /** 
+  /**
    * 是否启用原生动画驱动
    * Whether to use the native code to perform animations.
    */
@@ -147,7 +147,7 @@ export class Props {
   /**
    * 自定义尾部
    */
-  public renderFooter?: (currentIndex: number) => React.ReactElement<any> = () => {
+  public renderFooter?: (currentIndex?: number) => React.ReactElement<any> = () => {
     return null as any;
   };
 

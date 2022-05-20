@@ -87,7 +87,7 @@ export default class ImageViewer extends React.Component<Props, State> {
 
     // 给 imageSizes 塞入空数组
     const imageSizes: IImageSize[] = [];
-    nextProps.imageUrls.forEach(imageUrl => {
+    nextProps.imageUrls.forEach((imageUrl) => {
       imageSizes.push({
         width: imageUrl.width || 0,
         height: imageUrl.height || 0,
@@ -538,7 +538,7 @@ export default class ImageViewer extends React.Component<Props, State> {
           return (
             <ImageZoom
               key={index}
-              ref={el => (this.imageRefs[index] = el)}
+              ref={(el) => (this.imageRefs[index] = el)}
               cropWidth={this.width}
               cropHeight={this.height}
               maxOverflow={this.props.maxOverflow}
@@ -561,6 +561,12 @@ export default class ImageViewer extends React.Component<Props, State> {
               maxScale={this.props.maxScale}
             >
               {this!.props!.renderImage!(image.props)}
+              <View style={{ position: 'absolute', top: 0, left: 0, width: '100%' }}>
+                {this!.props!.renderHeader!()}
+              </View>
+              <View style={{ position: 'absolute', bottom: 32, left: 0, width: '100%', alignItems: 'center' }}>
+                {this!.props!.renderFooter!()}
+              </View>
             </ImageZoom>
           );
         case 'fail':
@@ -589,9 +595,9 @@ export default class ImageViewer extends React.Component<Props, State> {
     return (
       <Animated.View style={{ zIndex: 9 }}>
         <Animated.View style={{ ...this.styles.container, opacity: this.fadeAnim }}>
-          {this!.props!.renderHeader!(this.state.currentShowIndex)}
+          {/* {this!.props!.renderHeader!(this.state.currentShowIndex)} */}
 
-          <View style={this.styles.arrowLeftContainer}>
+          {/* <View style={this.styles.arrowLeftContainer}>
             <TouchableWithoutFeedback onPress={this.goBack}>
               <View>{this!.props!.renderArrowLeft!()}</View>
             </TouchableWithoutFeedback>
@@ -601,7 +607,7 @@ export default class ImageViewer extends React.Component<Props, State> {
             <TouchableWithoutFeedback onPress={this.goNext}>
               <View>{this!.props!.renderArrowRight!()}</View>
             </TouchableWithoutFeedback>
-          </View>
+          </View> */}
 
           <Animated.View
             style={{
@@ -612,7 +618,7 @@ export default class ImageViewer extends React.Component<Props, State> {
           >
             {ImageElements}
           </Animated.View>
-          {this!.props!.renderIndicator!((this.state.currentShowIndex || 0) + 1, this.props.imageUrls.length)}
+          {/* {this!.props!.renderIndicator!((this.state.currentShowIndex || 0) + 1, this.props.imageUrls.length)}
 
           {this.props.imageUrls[this.state.currentShowIndex || 0] &&
             this.props.imageUrls[this.state.currentShowIndex || 0].originSizeKb &&
@@ -625,7 +631,7 @@ export default class ImageViewer extends React.Component<Props, State> {
             )}
           <View style={[{ bottom: 0, position: 'absolute', zIndex: 9 }, this.props.footerContainerStyle]}>
             {this!.props!.renderFooter!(this.state.currentShowIndex || 0)}
-          </View>
+          </View> */}
         </Animated.View>
       </Animated.View>
     );
