@@ -538,6 +538,7 @@ export default class ImageViewer extends React.Component<Props, State> {
           }
           return (
             <ImageZoom
+              style={{ justifyContent: 'center', alignItems: 'center' }}
               key={index}
               ref={(el) => (this.imageRefs[index] = el)}
               cropWidth={this.width}
