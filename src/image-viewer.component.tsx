@@ -561,12 +561,6 @@ export default class ImageViewer extends React.Component<Props, State> {
               maxScale={this.props.maxScale}
             >
               {this!.props!.renderImage!(image.props)}
-              <View style={{ position: 'absolute', top: 0, left: 0, width: '100%' }}>
-                {this!.props!.renderHeader!()}
-              </View>
-              <View style={{ position: 'absolute', bottom: 32, left: 0, width: '100%', alignItems: 'center' }}>
-                {this!.props!.renderFooter!()}
-              </View>
             </ImageZoom>
           );
         case 'fail':
@@ -616,7 +610,11 @@ export default class ImageViewer extends React.Component<Props, State> {
               width: this.width * this.props.imageUrls.length
             }}
           >
+            <View style={{ position: 'absolute', top: 0, left: 0, width: '100%' }}>{this!.props!.renderHeader!()}</View>
             {ImageElements}
+            <View style={{ position: 'absolute', bottom: 32, left: 0, width: '100%', alignItems: 'center' }}>
+              {this!.props!.renderFooter!()}
+            </View>
           </Animated.View>
           {/* {this!.props!.renderIndicator!((this.state.currentShowIndex || 0) + 1, this.props.imageUrls.length)}
 

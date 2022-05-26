@@ -298,6 +298,11 @@ export interface IImageInfo {
    * 初始是否不超高 TODO:
    */
   freeWidth?: boolean;
+
+  id?: string;
+  src?: any;
+  createdDate?: string;
+  located?: boolean;
 }
 
 export interface IImageSize {
