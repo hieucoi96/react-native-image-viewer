@@ -538,7 +538,7 @@ export default class ImageViewer extends React.Component<Props, State> {
           }
           return (
             <ImageZoom
-              style={{ justifyContent: 'center', alignItems: 'center', width: screenWidth, height: screenHeight }}
+              // style={{ justifyContent: 'center', alignItems: 'center', width: screenWidth, height: screenHeight }}
               key={index}
               ref={(el) => (this.imageRefs[index] = el)}
               cropWidth={this.width}
@@ -550,8 +550,8 @@ export default class ImageViewer extends React.Component<Props, State> {
               onLongPress={this.handleLongPressWithIndex.get(index)}
               onClick={this.handleClick}
               onDoubleClick={this.handleDoubleClick}
-              imageWidth={width}
-              imageHeight={height}
+              imageWidth={screenWidth}
+              imageHeight={screenHeight}
               enableSwipeDown={this.props.enableSwipeDown}
               swipeDownThreshold={this.props.swipeDownThreshold}
               onSwipeDown={this.handleSwipeDown}
@@ -562,15 +562,16 @@ export default class ImageViewer extends React.Component<Props, State> {
               minScale={this.props.minScale}
               maxScale={this.props.maxScale}
             >
-              {/* <View style={{ flex: 1 }}>
-                
-              </View> */}
-              {this!.props!.renderImage!(image.props)}
-              <View style={{ position: 'absolute', top: 0, left: 0, width: '100%' }}>
-                {this!.props!.renderHeader!()}
-              </View>
-              <View style={{ position: 'absolute', bottom: 32, left: 0, width: '100%', alignItems: 'center' }}>
-                {this!.props!.renderFooter!()}
+              <View
+                style={{ width: screenWidth, height: screenHeight, justifyContent: 'center', alignItems: 'center' }}
+              >
+                {this!.props!.renderImage!(image.props)}
+                <View style={{ position: 'absolute', top: 0, left: 0, width: '100%' }}>
+                  {this!.props!.renderHeader!()}
+                </View>
+                <View style={{ position: 'absolute', bottom: 32, left: 0, width: '100%', alignItems: 'center' }}>
+                  {this!.props!.renderFooter!()}
+                </View>
               </View>
             </ImageZoom>
           );
@@ -715,8 +716,7 @@ export default class ImageViewer extends React.Component<Props, State> {
         style={{
           flex: 1,
           overflow: 'hidden',
-          ...this.props.style,
-          backgroundColor: 'white'
+          ...this.props.style
         }}
       >
         {childs}
