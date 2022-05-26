@@ -715,7 +715,8 @@ export default class ImageViewer extends React.Component<Props, State> {
         style={{
           flex: 1,
           overflow: 'hidden',
-          ...this.props.style
+          ...this.props.style,
+          backgroundColor: 'white'
         }}
       >
         {childs}
