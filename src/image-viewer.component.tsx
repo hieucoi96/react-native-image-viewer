@@ -548,8 +548,8 @@ export default class ImageViewer extends React.Component<Props, State> {
               onLongPress={this.handleLongPressWithIndex.get(index)}
               onClick={this.handleClick}
               onDoubleClick={this.handleDoubleClick}
-              imageWidth={screenWidth}
-              imageHeight={screenHeight}
+              imageWidth={width}
+              imageHeight={height}
               enableSwipeDown={this.props.enableSwipeDown}
               swipeDownThreshold={this.props.swipeDownThreshold}
               onSwipeDown={this.handleSwipeDown}
@@ -560,14 +560,15 @@ export default class ImageViewer extends React.Component<Props, State> {
               minScale={this.props.minScale}
               maxScale={this.props.maxScale}
             >
-              <View style={{ flex: 1 }}>
-                {this!.props!.renderImage!(image.props)}
-                <View style={{ position: 'absolute', top: 0, left: 0, width: '100%' }}>
-                  {this!.props!.renderHeader!()}
-                </View>
-                <View style={{ position: 'absolute', bottom: 32, left: 0, width: '100%', alignItems: 'center' }}>
-                  {this!.props!.renderFooter!()}
-                </View>
+              {/* <View style={{ flex: 1 }}>
+                
+              </View> */}
+              {this!.props!.renderImage!(image.props)}
+              <View style={{ position: 'absolute', top: 0, left: 0, width: '100%' }}>
+                {this!.props!.renderHeader!()}
+              </View>
+              <View style={{ position: 'absolute', bottom: 32, left: 0, width: '100%', alignItems: 'center' }}>
+                {this!.props!.renderFooter!()}
               </View>
             </ImageZoom>
           );
