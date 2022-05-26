@@ -518,7 +518,8 @@ export default class ImageViewer extends React.Component<Props, State> {
             ...this.styles.imageStyle, // User config can override above.
             ...image.props.style,
             width,
-            height
+            height,
+            alignSelf: 'center'
           };
 
           if (typeof image.props.source === 'number') {
@@ -548,8 +549,8 @@ export default class ImageViewer extends React.Component<Props, State> {
               onLongPress={this.handleLongPressWithIndex.get(index)}
               onClick={this.handleClick}
               onDoubleClick={this.handleDoubleClick}
-              imageWidth={width}
-              imageHeight={height}
+              imageWidth={screenWidth}
+              imageHeight={screenHeight}
               enableSwipeDown={this.props.enableSwipeDown}
               swipeDownThreshold={this.props.swipeDownThreshold}
               onSwipeDown={this.handleSwipeDown}
