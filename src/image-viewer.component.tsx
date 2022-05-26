@@ -518,8 +518,7 @@ export default class ImageViewer extends React.Component<Props, State> {
             ...this.styles.imageStyle, // User config can override above.
             ...image.props.style,
             width,
-            height,
-            alignSelf: 'center'
+            height
           };
 
           if (typeof image.props.source === 'number') {
@@ -538,7 +537,6 @@ export default class ImageViewer extends React.Component<Props, State> {
           }
           return (
             <ImageZoom
-              // style={{ justifyContent: 'center', alignItems: 'center', width: screenWidth, height: screenHeight }}
               key={index}
               ref={(el) => (this.imageRefs[index] = el)}
               cropWidth={this.width}
@@ -569,7 +567,7 @@ export default class ImageViewer extends React.Component<Props, State> {
                   height: screenHeight,
                   justifyContent: 'center',
                   alignItems: 'center',
-                  backgroundColor: 'black'
+                  backgroundColor: screenHeight === height ? 'transparent' : 'black'
                 }}
               >
                 {this!.props!.renderImage!(image.props)}
