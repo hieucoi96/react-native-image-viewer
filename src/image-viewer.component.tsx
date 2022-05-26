@@ -563,7 +563,14 @@ export default class ImageViewer extends React.Component<Props, State> {
               maxScale={this.props.maxScale}
             >
               <View
-                style={{ width: screenWidth, height: screenHeight, justifyContent: 'center', alignItems: 'center' }}
+                key={index}
+                style={{
+                  width: screenWidth,
+                  height: screenHeight,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  backgroundColor: 'black'
+                }}
               >
                 {this!.props!.renderImage!(image.props)}
                 <View style={{ position: 'absolute', top: 0, left: 0, width: '100%' }}>
