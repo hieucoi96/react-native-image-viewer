@@ -538,7 +538,7 @@ export default class ImageViewer extends React.Component<Props, State> {
           }
           return (
             <ImageZoom
-              style={{ justifyContent: 'center', alignItems: 'center' }}
+              style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}
               key={index}
               ref={(el) => (this.imageRefs[index] = el)}
               cropWidth={this.width}
@@ -550,8 +550,8 @@ export default class ImageViewer extends React.Component<Props, State> {
               onLongPress={this.handleLongPressWithIndex.get(index)}
               onClick={this.handleClick}
               onDoubleClick={this.handleDoubleClick}
-              imageWidth={screenWidth}
-              imageHeight={screenHeight}
+              imageWidth={width}
+              imageHeight={height}
               enableSwipeDown={this.props.enableSwipeDown}
               swipeDownThreshold={this.props.swipeDownThreshold}
               onSwipeDown={this.handleSwipeDown}
