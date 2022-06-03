@@ -188,7 +188,7 @@ export default class ImageViewer extends React.Component<Props, State> {
     // 如果已知源图片宽高，直接设置为 success
     if (image.width && image.height) {
       if (this.props.enablePreload && imageLoaded === false) {
-        Image.prefetch(image.url);
+        Image.prefetch(image.url ? image.url : '');
       }
       imageStatus.width = image.width;
       imageStatus.height = image.height;
@@ -198,7 +198,7 @@ export default class ImageViewer extends React.Component<Props, State> {
     }
 
     Image.getSize(
-      image.url,
+      image.url ? image.url : '',
       (width: number, height: number) => {
         imageStatus.width = width;
         imageStatus.height = height;
@@ -207,7 +207,7 @@ export default class ImageViewer extends React.Component<Props, State> {
       },
       () => {
         try {
-          const data = (Image as any).resolveAssetSource(image.props.source);
+          const data = (Image as any).resolveAssetSource(image.src);
           imageStatus.width = data.width;
           imageStatus.height = data.height;
           imageStatus.status = 'success';
