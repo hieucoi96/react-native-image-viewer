@@ -303,6 +303,7 @@ export interface IImageInfo {
   src?: any;
   createdDate?: string;
   located?: boolean;
+  [key: string]: any;
 }
 
 export interface IImageSize {
