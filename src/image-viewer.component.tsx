@@ -146,9 +146,9 @@ export default class ImageViewer extends React.Component<Props, State> {
     this.loadedIndex.set(index, true);
 
     const image = this.props.imageUrls[index];
-    if (!image.url) {
-      image.url = '';
-    }
+    // if (!image.url) {
+    //   image.url = '';
+    // }
     const imageStatus = { ...this!.state!.imageSizes![index] };
 
     // 保存 imageSize
@@ -185,40 +185,42 @@ export default class ImageViewer extends React.Component<Props, State> {
       imageLoaded = true;
     }
 
-    // 如果已知源图片宽高，直接设置为 success
-    if (image.width && image.height) {
-      if (this.props.enablePreload && imageLoaded === false) {
-        Image.prefetch(image.url);
-      }
-      imageStatus.width = image.width;
-      imageStatus.height = image.height;
-      imageStatus.status = 'success';
-      saveImageSize();
-      return;
-    }
-
-    Image.getSize(
-      image.url,
-      (width: number, height: number) => {
-        imageStatus.width = width;
-        imageStatus.height = height;
+    if (image.url) {
+      // 如果已知源图片宽高，直接设置为 success
+      if (image.width && image.height) {
+        if (this.props.enablePreload && imageLoaded === false) {
+          Image.prefetch(image.url);
+        }
+        imageStatus.width = image.width;
+        imageStatus.height = image.height;
         imageStatus.status = 'success';
         saveImageSize();
-      },
-      () => {
-        try {
-          const data = (Image as any).resolveAssetSource(image.props.source);
-          imageStatus.width = data.width;
-          imageStatus.height = data.height;
+        return;
+      }
+
+      Image.getSize(
+        image.url,
+        (width: number, height: number) => {
+          imageStatus.width = width;
+          imageStatus.height = height;
           imageStatus.status = 'success';
           saveImageSize();
-        } catch (newError) {
-          // Give up..
-          imageStatus.status = 'fail';
-          saveImageSize();
+        },
+        () => {
+          try {
+            const data = (Image as any).resolveAssetSource(image.props.source);
+            imageStatus.width = data.width;
+            imageStatus.height = data.height;
+            imageStatus.status = 'success';
+            saveImageSize();
+          } catch (newError) {
+            // Give up..
+            imageStatus.status = 'fail';
+            saveImageSize();
+          }
         }
-      }
-    );
+      );
+    }
   }
 
   /**
@@ -526,7 +528,7 @@ export default class ImageViewer extends React.Component<Props, State> {
 
           if (typeof image.src === 'number') {
             // source = require(..), doing nothing
-            image.props.source === image.src;
+            image.props.source = image.src;
           } else {
             if (!image.props.source) {
               image.props.source = {};
