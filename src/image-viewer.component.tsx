@@ -146,6 +146,9 @@ export default class ImageViewer extends React.Component<Props, State> {
     this.loadedIndex.set(index, true);
 
     const image = this.props.imageUrls[index];
+    if (!image.url) {
+      image.url = '';
+    }
     const imageStatus = { ...this!.state!.imageSizes![index] };
 
     // 保存 imageSize
@@ -521,8 +524,9 @@ export default class ImageViewer extends React.Component<Props, State> {
             height
           };
 
-          if (typeof image.props.source === 'number') {
+          if (typeof image.src === 'number') {
             // source = require(..), doing nothing
+            image.props.source === image.src;
           } else {
             if (!image.props.source) {
               image.props.source = {};
@@ -652,12 +656,12 @@ export default class ImageViewer extends React.Component<Props, State> {
    * 保存当前图片到本地相册
    */
   public saveToLocal = () => {
-    if (!this.props.onSave) {
-      CameraRoll.saveToCameraRoll(this.props.imageUrls[this.state.currentShowIndex || 0].url);
-      this!.props!.onSaveToCamera!(this.state.currentShowIndex);
-    } else {
-      this.props.onSave(this.props.imageUrls[this.state.currentShowIndex || 0].url);
-    }
+    // if (!this.props.onSave) {
+    //   CameraRoll.saveToCameraRoll(this.props.imageUrls[this.state.currentShowIndex || 0].url);
+    //   this!.props!.onSaveToCamera!(this.state.currentShowIndex);
+    // } else {
+    //   this.props.onSave(this.props.imageUrls[this.state.currentShowIndex || 0].url);
+    // }
 
     this.setState({ isShowMenu: false });
   };

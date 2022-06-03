@@ -264,7 +264,7 @@ export class State {
 }
 
 export interface IImageInfo {
-  url: string;
+  url?: string;
   /**
    * 没有的话会自动拉取
    */
